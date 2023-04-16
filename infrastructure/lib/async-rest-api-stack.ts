@@ -13,7 +13,7 @@ export class AsyncRestApiStack extends Stack {
   constructor(scope: Construct, id: string, props?: StackProps) {
     super(scope, id, props);
 
-    const applicationName = "test";
+    const applicationName = "async-rest-api";
 
     const { table } = new TaskTable(this, "task-table", {
       applicationName,
