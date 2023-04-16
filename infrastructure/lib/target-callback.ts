@@ -19,11 +19,15 @@ export class TargetCallback extends Construct {
 
     const { applicationName } = props!;
 
-    this.eventBus = new EventBus(this, EventBus.name);
+    this.eventBus = new EventBus(this, "target-callback-eventbus");
 
-    const deadLetterQueue = new Queue(this, Queue.name, {
-      queueName: `${applicationName}-webhook-dlq`,
-    });
+    const deadLetterQueue = new Queue(
+      this,
+      "target-callback-deadletter-queue",
+      {
+        queueName: `${applicationName}-webhook-dlq`,
+      }
+    );
 
     const webhookLambda = new NodejsFunction(
       this,
@@ -39,7 +43,7 @@ export class TargetCallback extends Construct {
       }
     );
 
-    new Rule(this, Rule.name, {
+    new Rule(this, "target-callback-rule", {
       eventBus: this.eventBus,
       eventPattern: {
         source: Match.prefix(""),

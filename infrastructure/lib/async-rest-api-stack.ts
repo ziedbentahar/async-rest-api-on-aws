@@ -37,7 +37,7 @@ export class AsyncRestApiStack extends Stack {
     );
 
     const { checkTaskStatusAuthorizer, createTaskAuthorizer } =
-      new RequestAuthorizersLambdas(this, RequestAuthorizersLambdas.name, {
+      new RequestAuthorizersLambdas(this, "authorizers", {
         applicationName,
       });
 
@@ -50,17 +50,17 @@ export class AsyncRestApiStack extends Stack {
       },
     });
 
-    const { eventBus } = new TargetCallback(this, TargetCallback.name, {
+    const { eventBus } = new TargetCallback(this, "target-callback", {
       applicationName,
     });
 
-    new TaskTableToStepFunctionPipe(this, TaskTableToStepFunctionPipe.name, {
+    new TaskTableToStepFunctionPipe(this, "task-table-to-step-function", {
       applicationName,
       soureTable: table,
       targetStepFunction: stateMachine,
     });
 
-    new TaskTableToApiEventBusPipe(this, TaskTableToApiEventBusPipe.name, {
+    new TaskTableToApiEventBusPipe(this, "task-table-to-eventbus", {
       applicationName,
       soureTable: table,
       targetEventBus: eventBus,

@@ -11,7 +11,7 @@ on:
 
 jobs:
 
-  build-serverless-meal-planner:
+  build-async-rest-api:
     
     runs-on: ubuntu-latest
     
