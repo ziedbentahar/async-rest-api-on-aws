@@ -7,18 +7,21 @@ export const handler = async (event: { detail: TaskResponse }) => {
 
   const serializedPayload = JSON.stringify(responsePayload);
 
-  const response = await fetch(event.detail.responseCallbackUrl, {
-    method: "POST",
-    headers: {
-      "X-Hmac-SHA256": await computeHMAC(serializedPayload, clientId),
-    },
-    body: serializedPayload,
-  });
-
-  if (!response.ok) {
-    console.log(
-      `Error occured while calling back ${event.detail.responseCallbackUrl}. Responses status was ${response.status}`
-    );
+  try {
+    const response = await fetch(event.detail.responseCallbackUrl, {
+      method: "POST",
+      headers: {
+        "X-Hmac-SHA256": await computeHMAC(serializedPayload, clientId),
+      },
+      body: serializedPayload,
+    });
+    if (!response.ok) {
+      throw new Error(
+        `Error occured while calling back ${event.detail.responseCallbackUrl}.`
+      );
+    }
+  } catch (error) {
+    console.log(error);
     return {
       status: 500,
     };
