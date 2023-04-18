@@ -1,12 +1,12 @@
 export const handler = async (event: {
   methodArn: string;
-  headers: { token: string; callback: string };
+  headers: { Authorization: string; Callback: string };
 }) => {
   const { headers } = event;
 
   const { isTokenValid, principalId } = validateTokenWithCallbackUrl(
-    headers.token,
-    headers.callback
+    headers.Authorization,
+    headers.Callback
   );
 
   return {

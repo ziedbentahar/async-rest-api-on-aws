@@ -5,20 +5,23 @@ import crypto = require("crypto");
 export const handler = async (event: { detail: TaskResponse }) => {
   const { responseCallbackUrl, clientId, ...responsePayload } = event.detail;
 
-  const stringifiedResponsePayload = JSON.stringify(responsePayload);
+  const serializedPayload = JSON.stringify(responsePayload);
 
   const response = await fetch(event.detail.responseCallbackUrl, {
     method: "POST",
     headers: {
-      "X-Hmac-SHA256": await computeHMAC(stringifiedResponsePayload, clientId),
+      "X-Hmac-SHA256": await computeHMAC(serializedPayload, clientId),
     },
-    body: stringifiedResponsePayload,
+    body: serializedPayload,
   });
 
   if (!response.ok) {
-    throw new Error(
+    console.log(
       `Error occured while calling back ${event.detail.responseCallbackUrl}. Responses status was ${response.status}`
     );
+    return {
+      status: 500,
+    };
   }
 
   return {

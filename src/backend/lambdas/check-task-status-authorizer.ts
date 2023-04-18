@@ -1,10 +1,10 @@
 export const handler = async (event: {
   methodArn: string;
-  headers: { token: string; callback: string };
+  headers: { "X-API-KEY": string };
 }) => {
   const { headers } = event;
 
-  const { isTokenValid, principalId } = validateToken(headers.token);
+  const { isTokenValid, principalId } = validateToken(headers.Authorization);
 
   return {
     principalId: isTokenValid ? principalId : undefined,
