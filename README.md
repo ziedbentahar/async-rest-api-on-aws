@@ -6,4 +6,4 @@ Full code and Github actions workflow for this bog post:
 
 TODO
 
-![image](https://user-images.githubusercontent.com/6813975/232341065-9a4193de-f0cc-4bda-b9eb-75b3b4a8864d.png)
+![image](https://user-images.githubusercontent.com/6813975/232442853-bd45ba55-c348-4801-ac27-9e46d5c60e22.png)
