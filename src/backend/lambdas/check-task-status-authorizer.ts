@@ -1,6 +1,6 @@
 export const handler = async (event: {
   methodArn: string;
-  headers: { "X-API-KEY": string };
+  headers: { Authorization: string };
 }) => {
   const { headers } = event;
 
