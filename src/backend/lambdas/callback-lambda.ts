@@ -3,11 +3,9 @@ import { TaskResponse } from "./types";
 import crypto = require("crypto");
 
 export const handler = async (event: { detail: TaskResponse }) => {
-  const { responseCallbackUrl, clientId, ...responsePayload } = event.detail;
-
-  const serializedPayload = JSON.stringify(responsePayload);
-
   try {
+    const { responseCallbackUrl, clientId, ...responsePayload } = event.detail;
+    const serializedPayload = JSON.stringify(responsePayload);
     const response = await fetch(event.detail.responseCallbackUrl, {
       method: "POST",
       headers: {
