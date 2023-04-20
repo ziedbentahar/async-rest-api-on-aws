@@ -4,6 +4,6 @@
 
 Full code and Github actions workflow for this bog post:
 
-TODO
+https://medium.com/@zied-ben-tahar/serverless-asynchronous-rest-apis-on-aws-c48156d790c1
 
 ![image](https://user-images.githubusercontent.com/6813975/232885387-7cc8efed-c141-4fb5-84b1-99068f379f3e.png)
