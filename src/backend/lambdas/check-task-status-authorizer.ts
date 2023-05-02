@@ -24,6 +24,6 @@ export const handler = async (event: {
 const validateToken = (
   token: string
 ): { isTokenValid: boolean; principalId: string } => {
-  // TODO: do token with callback validation
+  // TODO: do token validation
   return { isTokenValid: true, principalId: "42" };
 };
