@@ -15,6 +15,7 @@ export class LongRunningTasksLambdas extends Construct {
   readonly lambda1: IFunction;
   readonly lambda2: IFunction;
   readonly lambda3: IFunction;
+  readonly helloWorld: IFunction;
 
   constructor(
     scope: Construct,
@@ -56,6 +57,17 @@ export class LongRunningTasksLambdas extends Construct {
         TASK_TABLE_NAME: taskTable.tableName,
       },
     });
+
+    this.helloWorld = new NodejsFunction(
+      this,
+      `${applicationName}-hello-world`,
+      {
+        ...lambdaConfig,
+        entry: resolve("../src/backend/lambdas/hello-world.ts"),
+        functionName: `${applicationName}-hello-world`,
+        handler: "handler",
+      }
+    );
 
     taskTable.grantReadWriteData(this.lambda3);
   }
