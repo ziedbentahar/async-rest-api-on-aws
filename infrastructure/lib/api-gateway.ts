@@ -1,6 +1,7 @@
 import {
   AwsIntegration,
   IdentitySource,
+  LambdaIntegration,
   PassthroughBehavior,
   RequestAuthorizer,
   Resource,
@@ -18,6 +19,7 @@ interface ApiGatewayProps {
     createTask: IFunction;
     getStatus: IFunction;
   };
+  helloWorld?: IFunction;
 }
 
 export class ApiGateway extends Construct {
@@ -28,6 +30,7 @@ export class ApiGateway extends Construct {
       applicationName,
       destinationTable,
       authorizers: { createTask, getStatus },
+      helloWorld,
     } = props!;
 
     const apigatewayName = `${applicationName}-apigateway`;
@@ -41,6 +44,11 @@ export class ApiGateway extends Construct {
 
     this.addPostMethodIntegration(createTask, destinationTable, resource);
     this.addGetMethodIntegration(getStatus, destinationTable, resource);
+
+    if (helloWorld) {
+      const helloResource = api.root.addResource("hello");
+      this.addHelloMethodIntegration(helloWorld, helloResource);
+    }
   }
 
   private addPostMethodIntegration(
@@ -164,6 +172,14 @@ export class ApiGateway extends Construct {
     resource.addResource("{id}").addMethod("GET", dynamoQueryIntegration, {
       methodResponses: [{ statusCode: "200" }],
       authorizer,
+    });
+  }
+
+  private addHelloMethodIntegration(helloWorld: IFunction, resource: Resource) {
+    const integration = new LambdaIntegration(helloWorld);
+
+    resource.addMethod("GET", integration, {
+      methodResponses: [{ statusCode: "200" }],
     });
   }
 }
