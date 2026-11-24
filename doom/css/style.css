@@ -1,0 +1,140 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #000;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+}
+
+#gameCanvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(180deg, #1a1a2e 0%, #000 100%);
+}
+
+#hud {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 14px;
+    text-shadow: 0 0 10px #00ff00;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#hud > div {
+    margin-bottom: 8px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 4px 8px;
+    border: 1px solid #00ff00;
+    border-radius: 2px;
+}
+
+#healthValue, #scoreValue, #ammoValue, #fpsValue {
+    color: #ffff00;
+    font-weight: bold;
+}
+
+#instructions {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    font-size: 12px;
+    text-align: center;
+    text-shadow: 0 0 10px #00ff00;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 8px 15px;
+    border: 1px solid #00ff00;
+    border-radius: 4px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+#instructions p {
+    margin: 0;
+}
+
+#gameOverScreen {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+}
+
+#gameOverContent {
+    text-align: center;
+    color: #00ff00;
+    font-family: 'Courier New', monospace;
+    text-shadow: 0 0 20px #00ff00;
+}
+
+#gameOverContent h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+}
+
+#gameOverContent p {
+    font-size: 20px;
+    margin-bottom: 30px;
+    color: #ffff00;
+}
+
+#restartButton {
+    padding: 10px 30px;
+    font-size: 16px;
+    background-color: #00ff00;
+    color: #000;
+    border: 2px solid #00ff00;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s;
+    text-transform: uppercase;
+}
+
+#restartButton:hover {
+    background-color: #ffff00;
+    border-color: #ffff00;
+    box-shadow: 0 0 20px #ffff00;
+}
+
+#restartButton:active {
+    transform: scale(0.95);
+}
+
+/* Crosshair */
+#gameCanvas::after {
+    content: '+';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #00ff00;
+    font-size: 24px;
+    text-shadow: 0 0 10px #00ff00;
+    pointer-events: none;
+}
