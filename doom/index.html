@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doom-Like Game Demo</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.babylonjs.com/babylon.js"></script>
+    <script src="https://cdn.babylonjs.com/materialsLibrary/babylonjs.materials.min.js"></script>
+</head>
+<body>
+    <div id="gameContainer">
+        <canvas id="gameCanvas"></canvas>
+        <div id="hud">
+            <div id="health">Health: <span id="healthValue">100</span></div>
+            <div id="score">Score: <span id="scoreValue">0</span></div>
+            <div id="ammo">Ammo: <span id="ammoValue">∞</span></div>
+            <div id="fps">FPS: <span id="fpsValue">0</span></div>
+        </div>
+        <div id="gameOverScreen" style="display: none;">
+            <div id="gameOverContent">
+                <h1 id="gameOverTitle">Game Over</h1>
+                <p id="gameOverMessage"></p>
+                <button id="restartButton">Restart Game</button>
+            </div>
+        </div>
+        <div id="instructions">
+            <p><strong>WASD/Arrows:</strong> Move | <strong>Space/Click:</strong> Shoot | <strong>ESC:</strong> Restart</p>
+        </div>
+    </div>
+
+    <script src="js/environment.js"></script>
+    <script src="js/player.js"></script>
+    <script src="js/enemy.js"></script>
+    <script src="js/ui.js"></script>
+    <script src="js/game.js"></script>
+</body>
+</html>

@@ -48,6 +48,7 @@ export class AsyncRestApiStack extends Stack {
         createTask: createTaskAuthorizer,
         getStatus: checkTaskStatusAuthorizer,
       },
+      helloWorld: lambdas.helloWorld,
     });
 
     const { eventBus } = new TargetCallback(this, "target-callback", {
